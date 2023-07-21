@@ -29,4 +29,20 @@ public class RobotInAGripTest {
 						{ 1, 0, 0 },
 				}).solve());
 	}
+
+	@Test
+	public void testBT() {
+		new RobotInAGrip(4, 3, new int[][] {
+				{ 0, 0, 1 },
+				{ 0, 1, 0 },
+				{ 0, 0, 1 },
+				{ 1, 0, 0 },
+		}).solveBT();
+		new RobotInAGrip(4, 3, new int[][] {
+				{ 0, 0, 1 },
+				{ 0, 1, 0 },
+				{ 0, 0, 1 },
+				{ 0, 0, 0 },
+		}).solveBT();
+	}
 }

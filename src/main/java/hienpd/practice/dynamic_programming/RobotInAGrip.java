@@ -1,9 +1,12 @@
 package hienpd.practice.dynamic_programming;
 
+import java.util.ArrayList;
 import java.util.Deque;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
+import java.awt.Point;
 
 /**
  * 
@@ -13,8 +16,11 @@ public class RobotInAGrip {
 	private int r, c;
 	private int[][] matrix;
 	private boolean found;
-	private Set<Integer> notFoundMemo;
+	private Set<Point> notFoundMemo;
 	private Deque<String> path;
+
+	private Deque<Point> pathP;
+	private List<Deque<Point>> allPaths;
 
 	public RobotInAGrip(int iRow, int iCol, int[][] iMatrix) {
 		r = iRow;
@@ -22,46 +28,80 @@ public class RobotInAGrip {
 		matrix = iMatrix;
 
 		found = false;
-		notFoundMemo = new HashSet<Integer>();
+		notFoundMemo = new HashSet<Point>();
 		path = new LinkedList<String>();
+
+		pathP = new LinkedList<Point>();
+		allPaths = new ArrayList<Deque<Point>>();
 	}
 
 	public String solve() {
-		pathFromAPoint(0, 0);
-		if (!found) {
-			return "not found";
+		if (pathFromAPoint(0, 0)) {
+			return String.join("-", path);
 		}
-
-		return String.join("-", path);
+		return "not found";
 	}
 
-	private void pathFromAPoint(int iR, int iC) {
-		if (notFoundMemo.contains(iR * c + iC)) {
+	public void solveBT() {
+		if (pathFromAPointBT(0, 0)) {
+			System.out.printf("found %d paths:%n%s%n", allPaths.size(), allPaths);
 			return;
+		}
+		System.out.println("not found any paths");
+		return;
+	}
+
+	private boolean pathFromAPoint(int iR, int iC) {
+		var p = new Point(iR, iC);
+		if (iR > r - 1 || iC > c - 1 || matrix[iR][iC] == 1) {
+			return false;
+		}
+		if (notFoundMemo.contains(p)) {
+			return false;
 		}
 		if (iR == r - 1 && iC == c - 1) {
-			found = true;
-			return;
+			return true;
 		}
 
-		if (iR < r - 1 && matrix[iR + 1][iC] == 0) {
-			path.addLast("D");
-			pathFromAPoint(iR + 1, iC);
-			if (found) {
-				return;
-			}
-			path.removeLast();
+		if (pathFromAPoint(iR + 1, iC)) {
+			path.addFirst("D");
+			return true;
 		}
-		if (iC < c - 1 && matrix[iR][iC + 1] == 0) {
-			path.addLast("R");
-			pathFromAPoint(iR, iC + 1);
-			if (found) {
-				return;
-			}
-			path.removeLast();
+		if (pathFromAPoint(iR, iC + 1)) {
+			path.addFirst("R");
+			return true;
 		}
-		notFoundMemo.add(iR * c + iC);
-		return;
+		notFoundMemo.add(p);
+		return false;
+	}
+
+	private boolean pathFromAPointBT(int iR, int iC) {
+		var p = new Point(iR, iC);
+		pathP.addLast(p);
+		if (iR > r - 1 || iC > c - 1 || matrix[iR][iC] == 1) {
+			return false;
+		}
+		if (notFoundMemo.contains(p)) {
+			return false;
+		}
+		if (iR == r - 1 && iC == c - 1) {
+			allPaths.add(new LinkedList<Point>(pathP));
+			return true;
+		}
+
+		var isFound = false;
+		if (pathFromAPointBT(iR + 1, iC)) {
+			isFound = true;
+		}
+		pathP.removeLast();
+		if (pathFromAPointBT(iR, iC + 1)) {
+			isFound = true;
+		}
+		if (!isFound) {
+			notFoundMemo.add(p);
+			return false;
+		}
+		return true;
 	}
 
 	public String toString() {
