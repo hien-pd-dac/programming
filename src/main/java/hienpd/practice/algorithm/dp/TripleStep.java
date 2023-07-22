@@ -1,4 +1,4 @@
-package hienpd.practice.dynamic_programming;
+package hienpd.practice.algorithm.dp;
 
 /**
  * 
