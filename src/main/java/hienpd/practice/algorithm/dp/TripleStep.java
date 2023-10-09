@@ -4,7 +4,7 @@ package hienpd.practice.algorithm.dp;
  * 
  * Cracking the coding interview Q.8.1 (p.134).
  */
-public class TripleStep {
+class TripleStep {
 	public int maxWaysToRunUpStairs(int n) {
 		if (n == 1) {
 			return 1;

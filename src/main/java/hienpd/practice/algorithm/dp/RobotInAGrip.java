@@ -12,7 +12,7 @@ import java.awt.Point;
  * 
  * Cracking the coding interview Q.8.2 (p.135).
  */
-public class RobotInAGrip {
+class RobotInAGrip {
 	private int r, c;
 	private int[][] matrix;
 	private boolean found;
@@ -44,10 +44,10 @@ public class RobotInAGrip {
 
 	public void solveBT() {
 		if (pathFromAPointBT(0, 0)) {
-			System.out.printf("found %d paths:%n%s%n", allPaths.size(), allPaths);
+			// System.out.printf("found %d paths:%n%s%n", allPaths.size(), allPaths);
 			return;
 		}
-		System.out.println("not found any paths");
+		// System.out.println("not found any paths");
 		return;
 	}
 

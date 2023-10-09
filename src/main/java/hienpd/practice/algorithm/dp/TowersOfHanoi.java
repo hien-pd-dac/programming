@@ -3,7 +3,7 @@ package hienpd.practice.algorithm.dp;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TowersOfHanoi {
+class TowersOfHanoi {
 	private int n;
 	private List<String> steps;
 

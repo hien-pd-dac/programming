@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class AllSubSets {
+class AllSubSets {
 	private List<Integer> set;
 	private Set<Integer> workingSet;
 	private List<Set<Integer>> result;

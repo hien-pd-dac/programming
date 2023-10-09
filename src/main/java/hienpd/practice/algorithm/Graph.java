@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class Graph<T> {
+class Graph<T> {
 	class Vertex {
 		private T value;
 		private List<Vertex> adjVertices;

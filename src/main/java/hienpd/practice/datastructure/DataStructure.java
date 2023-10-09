@@ -7,15 +7,17 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.Set;
 
-class DataStructure {
+public class DataStructure {
 	public static void main(String[] args) {
 		PlayWithString();
 		PlayWithList();
 		PlayWithMap();
 		PlayWithSet();
 		PlayWithDeque();
+		PlayWithPriorityQueue();
 	}
 
 	private static void PlayWithString() {
@@ -156,6 +158,30 @@ class DataStructure {
 		d.removeFirst();
 		d.removeLast();
 		System.out.printf("%s%n", d);
+		return;
+	}
+
+	private static void PlayWithPriorityQueue() {
+		System.out.printf("%n--- PriorityQueue<T> ---%n");
+		// init
+		var d = new PriorityQueue<Integer>();
+		d.add(1);
+		d.add(0);
+		d.add(2);
+		System.out.printf("%s, length=%d%n", d, d.size());
+		// iterator
+		for (var e : d) {
+			System.out.printf("%s%n", e);
+		}
+		// peek
+		System.out.printf("peek: %s%n", d.peek());
+		// poll
+		d.poll();
+		System.out.printf("after poll(): %s%n", d);
+		// remove
+		d.remove(2);
+		System.out.printf("after remove(2): %s%n", d);
+
 		return;
 	}
 }

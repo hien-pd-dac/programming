@@ -1,6 +1,6 @@
 package hienpd.practice.algorithm.dp;
 
-public class RecursiveMultiply {
+class RecursiveMultiply {
 	private int firstNum, secondNum;
 
 	public RecursiveMultiply(int firstNum, int secondNum) {

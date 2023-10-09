@@ -5,7 +5,7 @@ package hienpd.practice.algorithm.dp;
  * Cracking the coding interview Q.8.3 (p.135).
  */
 
-public class MagicIndex {
+class MagicIndex {
 	private int[] arr;
 
 	public MagicIndex(int[] arr) {
